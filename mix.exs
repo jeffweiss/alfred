@@ -14,7 +14,7 @@ defmodule Alfred.Mixfile do
   #
   # Type "mix help compile.app" for more information
   def application do
-    [applications: [:logger],
+    [applications: [:logger, :hedwig_hipchat],
      mod: {Alfred, []}]
   end
 
@@ -31,6 +31,7 @@ defmodule Alfred.Mixfile do
     [
       {:exml, github: "paulgray/exml", override: true},
       {:hedwig_hipchat, "~> 0.9"},
+      {:romeo, "~> 0.4.0", override: true},
     ]
   end
 end
