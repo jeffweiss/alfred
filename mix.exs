@@ -14,8 +14,13 @@ defmodule Alfred.Mixfile do
   #
   # Type "mix help compile.app" for more information
   def application do
-    [applications: [:logger, :hedwig_hipchat],
-     mod: {Alfred, []}]
+    [ applications: [
+        :logger,
+        :exml, :romeo, :hedwig, :hedwig_hipchat,
+        :conform,
+      ],
+      mod: {Alfred, []}
+    ]
   end
 
   # Dependencies can be Hex packages:
@@ -32,6 +37,7 @@ defmodule Alfred.Mixfile do
       {:exml, github: "paulgray/exml", override: true},
       {:hedwig_hipchat, "~> 0.9"},
       {:romeo, "~> 0.4.0", override: true},
+      {:conform, github: "bitwalker/conform", override: true},
     ]
   end
 end
