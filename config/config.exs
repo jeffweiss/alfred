@@ -4,8 +4,14 @@ use Mix.Config
 
 config :alfred, Alfred.Robot,
   adapter: Hedwig.Adapters.HipChat,
-  name: "alfred",
-  aka: "/",
+  name: "Alfred",
+  aka: "!",
+  jid: "587458_3985539@chat.hipchat.com",
+  password: "not_my_real_password",
+  rooms: [
+    {"587458_testing@conf.hipchat.com", []},
+    {"587458_elixircontinuousdelivery@conf.hipchat.com", []},
+  ],
   responders: [
     {Hedwig.Responders.Help, []},
     {Hedwig.Responders.GreatSuccess, []},
