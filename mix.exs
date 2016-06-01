@@ -17,7 +17,7 @@ defmodule Alfred.Mixfile do
     [ applications: [
         :logger,
         :exml, :romeo, :hedwig, :hedwig_hipchat,
-        :conform,
+        :conform, :exrm, :conform_exrm,
       ],
       mod: {Alfred, []}
     ]
@@ -38,6 +38,8 @@ defmodule Alfred.Mixfile do
       {:hedwig_hipchat, "~> 0.9"},
       {:romeo, "~> 0.4.0", override: true},
       {:conform, github: "bitwalker/conform", override: true},
+      {:exrm, "~> 1.0"},
+      {:conform_exrm, "~> 1.0"},
     ]
   end
 end
