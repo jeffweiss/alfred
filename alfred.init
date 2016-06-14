@@ -1,0 +1,60 @@
+#! /bin/sh
+
+### BEGIN INIT INFO
+# Provides:          alfred
+# Required-Start:    $remote_fs $syslog
+# Required-Stop:     $remote_fs $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Alfred chat bot
+### END INIT INFO
+
+set -e
+
+. /lib/lsb/init-functions
+
+NAME=alfred
+DESC="Alfred chat bot"
+PIDFILE=/opt/$NAME/erlang.pid
+HOME="/opt/$NAME"
+BASE_SCRIPT="$HOME/bin/$NAME"
+export HOME
+
+do_start() {
+  start-stop-daemon -S -p $PIDFILE -q --oknodo --startas $BASE_SCRIPT -- start
+}
+
+do_stop() {
+  $BASE_SCRIPT stop
+  start-stop-daemon -K -p $PIDFILE -q --oknodo --retry 5
+}
+
+case "$1" in
+    start)
+      do_start
+      log_daemon_msg "Starting $DESC" "$NAME"
+      case "$?" in
+        0|1) log_end_msg 0 ;;
+        2) log_end_msg 1 ;;
+      esac
+      ;;
+    stop)
+      log_daemon_msg "Stopping $DESC" "$NAME"
+      do_stop
+      case "$?" in
+        0|1) log_end_msg 0 ;;
+        2) log_end_msg 1 ;;
+      esac
+      ;;
+    restart)
+      do_stop
+      do_start
+      ;;
+    status)
+      status_of_proc -p $PIDFILE
+      ;;
+    *)
+      $BASE_SCRIPT $1
+      ;;
+esac
+
