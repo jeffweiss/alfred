@@ -15,7 +15,8 @@ config :alfred, Alfred.Robot,
   responders: [
     {Hedwig.Responders.Help, []},
     {Hedwig.Responders.GreatSuccess, []},
-    {Hedwig.Responders.ShipIt, []}
+    {Hedwig.Responders.ShipIt, []},
+    {Alfred.Responders.BadTime, []},
   ]
 
 
